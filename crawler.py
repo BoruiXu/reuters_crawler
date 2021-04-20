@@ -48,7 +48,7 @@ def get_newscontent(link_lists):
 def write_csv(id, time, title, content):
     # write the data of ten news of each page to CSV
     for i in range(10):
-        csv_writer.writerow([id[i], time[i].text, title[i].text, content[i]])
+        csv_writer.writerow([id[i], time[i].text, str(title[i].text).strip(), content[i]])
 
 
 if __name__ == '__main__':
@@ -73,10 +73,7 @@ if __name__ == '__main__':
         soup = BeautifulSoup(r.content, 'lxml')
         # get title of each news
         title = soup.find_all('h3', class_='story-title')
-        title_list = list()
-        for t in title:
-            t = (t.get_text()).strip()
-            title_list.append(t)
+        
     
         # get release time of each news
         time = soup.find_all('time')[:10]
