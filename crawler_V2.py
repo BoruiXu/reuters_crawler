@@ -140,6 +140,6 @@ if __name__ == '__main__':
        
         print("Page {} is finished".format(page + 1))    
         
-        break
+        
 ff.close()
 ff_id.close()
