@@ -95,7 +95,6 @@ if __name__ == '__main__':
         write_csv(id_list, time, title, news_lists)
         
 #        print(title)
-        break
         print("Page {} is finished".format(page + 1))
 ff.close()
 
