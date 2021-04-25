@@ -31,13 +31,12 @@ def get_linklists(soup):
 # the network is not stable, so use retry() to execute this function again after failure
 @retry()
 # get the content of each news
-def get_newscontent(link_lists):
+def get_newscontent(link_lists,g):
     # create a list to contain news of each page
     news_contents = []
     # traverse the links of news to get the content of each news
     for link in link_lists:
         html = 'https://www.reuters.com' + link
-        g = Goose({'enable_image_fetching': False})
         article = g.extract(url=html)
         news_contents.append(article.cleaned_text)
         
@@ -99,6 +98,8 @@ if __name__ == '__main__':
     #The top ten are news
     num = 10
     
+    g = Goose({'enable_image_fetching': False})
+    
     
     
     # get news data in the given page range
@@ -126,7 +127,7 @@ if __name__ == '__main__':
         for link in link_lists:
             id_list.append(str(link[:: -1][0:11][::-1]))
         # get news content
-        news_lists = get_newscontent(link_lists)
+        news_lists = get_newscontent(link_lists,g)
 
        
         for i in range(len(id_list)):
